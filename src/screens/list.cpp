@@ -91,11 +91,11 @@ void List::draw(SharedData &sharedData, unsigned int button) {
 					subPaths = split(sharedData.vpks[sharedData.cursorY]["screenshots"].get<string>().c_str(), ';');
 
 					for (string subPath : subPaths) {
-						Filesystem::mkDir("ux0:data/Easy_VPK/screenshots");
-						curlDownload((PARENT_URL + subPath).c_str(), ("ux0:data/Easy_VPK/" + subPath).c_str());
+						Filesystem::mkDir("ux0:data/SimpleVPK/screenshots");
+						curlDownload((PARENT_URL + subPath).c_str(), ("ux0:data/SimpleVPK/" + subPath).c_str());
 
 						vita2d_texture *img;
-						string img_file = ("ux0:data/Easy_VPK/" + subPath);
+						string img_file = ("ux0:data/SimpleVPK/" + subPath);
 
 						img = vita2d_load_PNG_file(img_file.c_str());
 						if (!img) img = vita2d_load_JPEG_file(img_file.c_str());
