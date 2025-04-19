@@ -64,7 +64,7 @@ void Details::draw(SharedData &sharedData, unsigned int button) {
 	vita2d_font_draw_text( sharedData.font, 20, 317,  WHITE, 30, longDescription.c_str());
 
 	bool _hasData = !sharedData.vpks[sharedData.cursorY]["data"].get<string>().empty();
-	bool _isInstalled = isPackageInstalled(sharedData.vpks[sharedData.cursorY]["titleid"].get<string>()) && !(sharedData.vpks[sharedData.cursorY]["titleid"].get<string>() == "ESVPK0009");
+	bool _isInstalled = isPackageInstalled(sharedData.vpks[sharedData.cursorY]["titleid"].get<string>()) && !(sharedData.vpks[sharedData.cursorY]["titleid"].get<string>() == "SIMPLEVPK");
 	
 	if      (!_hasData && !_isInstalled) vita2d_draw_texture(navbar1, 0, 504);
 	else if (_hasData  && !_isInstalled) vita2d_draw_texture(navbar2, 0, 504);
