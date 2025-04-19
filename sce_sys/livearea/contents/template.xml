@@ -12,7 +12,7 @@
 	<frame id="frame2">
 		<liveitem>
 			<text valign="bottom" align="left" text-align="left" text-valign="bottom" line-space="3" ellipsis="on">
-				<str color="#ffffff" size="50" bold="on" shadow="on">EasyVPK v2.1.0</str>
+				<str color="#ffffff" size="50" bold="on" shadow="on">SimpleVPK v1.0.0</str>
 			</text>
 		</liveitem>
 	</frame>
@@ -20,7 +20,7 @@
 	<frame id="frame3">
 		<liveitem>
 			<text valign="top" align="left" text-align="left" text-valign="top" line-space="2" ellipsis="on">
-				<str color="#ffffff" size="22" shadow="on">by Electric1447</str>
+				<str color="#ffffff" size="22" shadow="on">By NFSHubster</str>
 			</text>
 		</liveitem>
 	</frame>
