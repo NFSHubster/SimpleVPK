@@ -16,8 +16,8 @@
 #include "zip.h"
 
 
-#define UPDATER_SRC_EBOOT_PATH "ux0:app/ESVPK0009/resources/updater/eboot.bin"
-#define UPDATER_SRC_SFO_PATH "ux0:app/ESVPK0009/resources/updater/param.sfo"
+#define UPDATER_SRC_EBOOT_PATH "ux0:app/SIMPLEVPK/resources/updater/eboot.bin"
+#define UPDATER_SRC_SFO_PATH "ux0:app/SIMPLEVPK/resources/updater/param.sfo"
 
 #define UPDATER_DST_EBOOT_PATH PACKAGE_TEMP_FOLDER "eboot.bin"
 #define UPDATER_DST_SFO_DIR PACKAGE_TEMP_FOLDER "sce_sys/"
