@@ -258,8 +258,8 @@ static int downloader_main(unsigned int args, void* arg) {
 		
 		if (isInstalling) vita2d_pgf_draw_text(pgf, 20, 380, RED, 1.0f, "Installing, Please wait...");
 
-		vita2d_pgf_draw_text(pgf,  20,  30, YELLOW, 1.0f, "EasyVPK downloader");
-		vita2d_pgf_draw_text(pgf,  20, 514, YELLOW, 1.0f, "based on vitaQuakeIII downloader by Rinnegatamante");
+		vita2d_pgf_draw_text(pgf,  20,  30, YELLOW, 1.0f, "SimpleVPK downloader");
+		vita2d_pgf_draw_text(pgf,  20, 514, YELLOW, 1.0f, "based on VitaDB downloader by Rinnegatamante");
 		vita2d_pgf_draw_textf(pgf, 20,  80, PURPLE, 1.0f, "Downloading %s", d_filename.c_str());
 	
 		// Starting the download
