@@ -85,8 +85,8 @@ void curlDownload(const char *url, const char *dest) {
 std::string curlDownloadKeepName(char const*const url, std::string dst) {
 	CURL *curl;
 
-	SceUID file = sceIoOpen("ux0:data/Easy_VPK/plugin.tmp", SCE_O_CREAT | SCE_O_WRONLY, 0777);
-	SceUID head = sceIoOpen("ux0:data/Easy_VPK/head.tmp", SCE_O_CREAT | SCE_O_WRONLY, 0777);
+	SceUID file = sceIoOpen("ux0:data/SimpleVPK/plugin.tmp", SCE_O_CREAT | SCE_O_WRONLY, 0777);
+	SceUID head = sceIoOpen("ux0:data/SimpleVPK/head.tmp", SCE_O_CREAT | SCE_O_WRONLY, 0777);
 
 	curl = curl_easy_init();
 	if (curl) {
@@ -110,7 +110,7 @@ std::string curlDownloadKeepName(char const*const url, std::string dst) {
 	sceIoClose(file);
 	sceIoClose(head);
 
-	std::string header = Filesystem::readFile("ux0:data/Easy_VPK/head.tmp");
+	std::string header = Filesystem::readFile("ux0:data/SimpleVPK/head.tmp");
 
 	if (header.find("filename=\"") != string::npos) {
 		header = header.substr(header.find("filename=\"") + 10);
@@ -123,10 +123,10 @@ std::string curlDownloadKeepName(char const*const url, std::string dst) {
 			header = header.substr(header.find("/") + 1);
 	}
 
-	Filesystem::copyFile("ux0:data/Easy_VPK/plugin.tmp", dst+header);
+	Filesystem::copyFile("ux0:data/SimpleVPK/plugin.tmp", dst+header);
 
-	sceIoRemove("ux0:data/Easy_VPK/plugin.tmp");
-	sceIoRemove("ux0:data/Easy_VPK/head.tmp");
+	sceIoRemove("ux0:data/SimpleVPK/plugin.tmp");
+	sceIoRemove("ux0:data/SimpleVPK/head.tmp");
 
 	curl_easy_cleanup(curl);
 	curl_global_cleanup();
