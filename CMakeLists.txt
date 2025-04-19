@@ -8,14 +8,14 @@ if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
 	endif()
 endif()
 
-set(SHORT_NAME easyvpk)
+set(SHORT_NAME simplevpk)
 project(${SHORT_NAME})
 include("${VITASDK}/share/vita.cmake" REQUIRED)
 
-set(VITA_APP_NAME "EasyVPK")
-set(VITA_TITLEID  "ESVPK0009")
+set(VITA_APP_NAME "SimpleVPK")
+set(VITA_TITLEID  "SIMPLEVPK")
 set(UPDATER_TITLEID "ESUPD0009")
-set(VITA_VERSION  "02.10")
+set(VITA_VERSION  "1.0")
 
 
 set(PACKAGE_TEMP_FOLDER "ux0:/temp/pkg/")
@@ -121,8 +121,8 @@ vita_create_vpk(${SHORT_NAME}.vpk ${VITA_TITLEID} ${SHORT_NAME}.self
 	FILE src/graphics/navbar3.png resources/navbar3.png
 	FILE src/graphics/navbar4.png resources/navbar4.png
 	
-	FILE build/easyvpk_updater.self resources/updater/eboot.bin
-	FILE build/easyvpk_updater_param.sfo resources/updater/param.sfo
+	FILE build/simplevpk.self resources/updater/eboot.bin
+	FILE build/simplevpk_updater_param.sfo resources/updater/param.sfo
 )
 
 add_dependencies(${SHORT_NAME}.vpk
