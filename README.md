@@ -1,11 +1,19 @@
 # SimpleVPK
 
-SimpleVPK is a homebrew app based on [easyVPK](https://github.com/Electric1447/EasyVPK) that's designed for the PlayStation®Vita that allows USERS to easily download & install VPKs & Data Files from [VitaDB](https://www.rinnegatamante.eu/vitadb/#/)
+SimpleVPK is a homebrew app based on [easyVPK](https://github.com/Electric1447/EasyVPK) that's designed for the PlayStation®Vita that allows users to easily download & install VPKs & Data Files from [VitaDB](https://www.rinnegatamante.eu/vitadb/#/)
+
+# Current Goals in Progress 
+
+- Fix easyVPK's common crash error (C2-12828-1)
+
+- Utilize easyVPK's base to build a data files downloader for [PS Vita Data Files Repository](https://www.vita.unaux.com)
 
 
 # Changes From easyVPK
 
 - Updated VitaDB's URL to make the app usable again (from rinnegatamante.it/vitadb to rinnegatamante.eu/vitadb)
+
+- Updated CMakeLists.txt & updated it to use the new VitaSDK
 
 - Changed LiveArea Assets
 
