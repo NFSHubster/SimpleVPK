@@ -7,6 +7,7 @@ SimpleVPK is a homebrew app based on [easyVPK](https://github.com/Electric1447/E
 - Fix easyVPK's common crash error (C2-12828-1)
 
 - Utilize easyVPK's base to build a data files downloader for [PS Vita Data Files Repository](https://www.vita.unaux.com)
+- Use PSARCS format whenever possible 
 
 
 # Changes From easyVPK
