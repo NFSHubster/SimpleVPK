@@ -36,4 +36,6 @@ make
 
 - [Electric1447](https://github.com/Electric1447) For creating the original source code of easyVPK.
 
+- trademarked69/Desoxyn on Discord for patching critical errors & helping aith the troubleshooting process
+
 - The PS Vita Homebrew Community for their continued support.
