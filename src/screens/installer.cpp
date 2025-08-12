@@ -265,30 +265,34 @@ static int downloader_main(unsigned int args, void* arg) {
             break;
 
         vita2d_start_drawing();
-        vita2d_clear_screen();
+vita2d_clear_screen();
 
-        if (isInstalling)
-            vita2d_pgf_draw_text(pgf, 20, 380, RED, 1.0f, "Installing, Please wait...");
+if (isInstalling)
+    vita2d_pgf_draw_text(pgf, 20, 380, RED, 1.0f, "Installing, Please wait...");
 
-        vita2d_pgf_draw_text(pgf, 20, 30, YELLOW, 1.0f, "SimpleVPK downloader");
-        vita2d_pgf_draw_text(pgf, 20, 514, YELLOW, 1.0f, "based on VitaDB downloader by Rinnegatamante");
-        vita2d_pgf_draw_textf(pgf, 20, 80, PURPLE, 1.0f, "Downloading %s", d_filename.c_str());
+vita2d_pgf_draw_text(pgf, 20, 30, YELLOW, 1.0f, "SimpleVPK downloader");
+vita2d_pgf_draw_text(pgf, 20, 514, YELLOW, 1.0f, "based on VitaDB downloader by Rinnegatamante");
+vita2d_pgf_draw_textf(pgf, 20, 80, PURPLE, 1.0f, "Downloading %s", d_filename.c_str());
 
-        // Show cancel message if aborted
-        if (state == ERROR && abort_download) {
-            vita2d_pgf_draw_text(pgf, 20, 200, RED, 1.0f, "Download cancelled.");
-            vita2d_pgf_draw_text(pgf, 20, 220, WHITE, 1.0f, "Press Circle to return.");
-        } else if (state == DOWNLOADING || state == IDLE) {
-            if (total_bytes == 0xFFFFFFFF)
-                vita2d_pgf_draw_text(pgf, 20, 200, WHITE, 1.0f, "Downloading files, please wait.");
-            else
-                vita2d_pgf_draw_textf(pgf, 20, 200, WHITE, 1.0f, "Downloading files, please wait. (%.2f %s / %.2f %s)", format(downloaded_bytes), sizes[quota(downloaded_bytes)], format(total_bytes), sizes[quota(total_bytes)]);
-        } else if (state > DOWNLOADING) {
-            if (state >= FINISHED)
-                vita2d_pgf_draw_textf(pgf, 20, 400, WHITE, 1.0f, "%s\nPress O to exit.", (install_state || dl_type) ? "Finished!" : (dl_isEasyVPK ? "Press X to update." : "Press X to install. (May take several minutes)"));
+// Show cancel message if aborted
+if (state == ERROR && abort_download) {
+    vita2d_pgf_draw_text(pgf, 20, 200, RED, 1.0f, "Download cancelled.");
+    vita2d_pgf_draw_text(pgf, 20, 220, WHITE, 1.0f, "Press Circle to return.");
+} else if (state == DOWNLOADING || state == IDLE) {
+    if (total_bytes == 0xFFFFFFFF) {
+        vita2d_pgf_draw_text(pgf, 20, 200, WHITE, 1.0f, "Downloading files, please wait.");
+    } else {
+        vita2d_pgf_draw_textf(pgf, 20, 200, WHITE, 1.0f, "Downloading files, please wait. (%.2f %s / %.2f %s)", format(downloaded_bytes), sizes[quota(downloaded_bytes)], format(total_bytes), sizes[quota(total_bytes)]);
+    }
+    // Add this line for the cancel hint:
+    vita2d_pgf_draw_text(pgf, 20, 240, RED, 1.0f, "Press Circle to cancel download.");
+} else if (state > DOWNLOADING) {
+    if (state >= FINISHED)
+        vita2d_pgf_draw_textf(pgf, 20, 400, WHITE, 1.0f, "%s\nPress O to exit.", (install_state || dl_type) ? "Finished!" : (dl_isEasyVPK ? "Press X to update." : "Press X to install. (May take several minutes)"));
 
-            if (state < MISSING)
-                vita2d_pgf_draw_textf(pgf, 20, 200, GREEN, 1.0f, "Files downloaded successfully! (%.2f %s)", format(downloaded_bytes), sizes[quota(downloaded_bytes)]);
+    if (state < MISSING)
+        vita2d_pgf_draw_textf(pgf, 20, 200, GREEN, 1.0f, "Files downloaded successfully! (%.2f %s)", format(downloaded_bytes), sizes[quota(downloaded_bytes)]);
+
 
             if (state < FINISHED) {
                 vita2d_pgf_draw_text(pgf, 20, 220, WHITE, 1.0f, "Extracting files, please wait!");
