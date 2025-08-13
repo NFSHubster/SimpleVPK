@@ -65,7 +65,7 @@ void Details::draw(SharedData &sharedData, unsigned int button) {
 
 	bool _hasData = !sharedData.vpks[sharedData.cursorY]["data"].get<string>().empty();
 	bool _isInstalled = isPackageInstalled(sharedData.vpks[sharedData.cursorY]["titleid"].get<string>()) && !(sharedData.vpks[sharedData.cursorY]["titleid"].get<string>() == "SIMPLEVPK");
-	
+
 	if      (!_hasData && !_isInstalled) vita2d_draw_texture(navbar1, 0, 504);
 	else if (_hasData  && !_isInstalled) vita2d_draw_texture(navbar2, 0, 504);
 	else if (!_hasData &&  _isInstalled) vita2d_draw_texture(navbar3, 0, 504);

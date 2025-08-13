@@ -26,7 +26,7 @@ private:
 
 class UpdaterPackage : private VitaPackage {
 public:
-	UpdaterPackage() : VitaPackage("easyvpk_updater") {};
+	UpdaterPackage() : VitaPackage("simplevpk_updater") {};
 
 	int InstallUpdater();
 };

@@ -68,8 +68,8 @@ int main() {
     }
 	
 	Filesystem::removePath(std::string(PACKAGE_TEMP_FOLDER));
-	Filesystem::removePath("ux0:data/Easy_VPK");
-	Filesystem::mkDir("ux0:data/Easy_VPK");
+	Filesystem::removePath("ux0:data/SimpleVPK");
+	Filesystem::mkDir("ux0:data/SimpleVPK");
 	Filesystem::mkDir(sharedData.vpkDownloadPath);
 
 	vita2d_set_clear_color(WHITE);
@@ -77,9 +77,9 @@ int main() {
 
 	httpInit();
 	netInit();
-	curlDownload(HOMEBREW_URL, "ux0:data/Easy_VPK/vpks.json");
+	curlDownload(HOMEBREW_URL, "ux0:data/SimpleVPK/vpks.json");
 	
-	sharedData.vpks = moveToTopJson(VITA_TITLEID, json::parse(Filesystem::readFile("ux0:data/Easy_VPK/vpks.json")));
+	sharedData.vpks = json::parse(Filesystem::readFile("ux0:data/SimpleVPK/vpks.json"));
 	sharedData.original = sharedData.vpks;
 
 	List listView;

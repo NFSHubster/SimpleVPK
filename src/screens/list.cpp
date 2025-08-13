@@ -92,7 +92,7 @@ void List::draw(SharedData &sharedData, unsigned int button) {
 
 					for (string subPath : subPaths) {
 						Filesystem::mkDir("ux0:data/SimpleVPK/screenshots");
-						curlDownload(subPath.c_str(), ("ux0:data/SimpleVPK/" + subPath).c_str());
+						curlDownload((PARENT_URL + subPath).c_str(), ("ux0:data/SimpleVPK/" + subPath).c_str());
 
 						vita2d_texture *img;
 						string img_file = ("ux0:data/SimpleVPK/" + subPath);
