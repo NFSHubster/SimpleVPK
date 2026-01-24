@@ -33,6 +33,7 @@ struct SharedData {
 	bool liteMode = false;
 	int scene = 0;
 	int cursorY = 0;
+	int leftStickY;
 	bool blockCross 	= false;
 	bool blockSquare 	= false;
 	bool blockCircle 	= false;

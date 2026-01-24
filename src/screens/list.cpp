@@ -4,11 +4,15 @@
 
 #include <sstream>
 #include <iostream>
+#include <psp2/kernel/processmgr.h>
 
 #include "../utils/filesystem.hpp"
 #include "../utils/search.hpp"
 #include "../net/download.hpp"
 
+uint64_t lastJoystickScrollTime = 0;
+int minCooldown = 50000;    // 50ms
+int maxCooldown = 300000;   // 300ms
 
 vector<string> split(string strToSplit, char delimeter) {
 	stringstream ss(strToSplit);
@@ -19,6 +23,19 @@ vector<string> split(string strToSplit, char delimeter) {
 		splittedStrings.push_back(item);
 
 	return splittedStrings;
+}
+
+std::string extractNameFromURL(const std::string& url) {
+    // Find the position of the last '/' in the URL
+    size_t lastSlashPos = url.find_last_of('/');
+    
+    // If a '/' exists, return the substring from the position after the last '/'
+    if (lastSlashPos != std::string::npos) {
+        return url.substr(lastSlashPos + 1);
+    }
+
+    // If no '/' exists, return the URL as-is (it might be the name itself)
+    return url;
 }
 
 void List::draw(SharedData &sharedData, unsigned int button) {
@@ -69,6 +86,23 @@ void List::draw(SharedData &sharedData, unsigned int button) {
 	if (scrollDelay <= 1) {
 		if (scrollDelay == 0)
 			scrollStage = 0;
+
+		uint64_t currentTime = sceKernelGetProcessTimeWide();  // in microseconds
+        int pressure = abs(sharedData.leftStickY - 128);
+        if (pressure > 30) {
+            // Map pressure to cooldown: higher pressure = faster scrolling
+            int scrollCooldown = maxCooldown - ((pressure - 30) * (maxCooldown - minCooldown)) / (127 - 30);
+            
+            if (currentTime - lastJoystickScrollTime >= scrollCooldown) {
+                if (sharedData.leftStickY < 100 && sharedData.cursorY > 0) {
+                    sharedData.cursorY--;
+                    lastJoystickScrollTime = currentTime;
+                } else if (sharedData.leftStickY > 155 && sharedData.cursorY < arrayLength - 1) {
+                    sharedData.cursorY++;
+                    lastJoystickScrollTime = currentTime;
+                }
+            }
+        }
 		
 		switch (button) {
 			case SCE_CTRL_CROSS:
@@ -92,10 +126,9 @@ void List::draw(SharedData &sharedData, unsigned int button) {
 
 					for (string subPath : subPaths) {
 						Filesystem::mkDir("ux0:data/SimpleVPK/screenshots");
-						curlDownload((PARENT_URL + subPath).c_str(), ("ux0:data/SimpleVPK/" + subPath).c_str());
-
 						vita2d_texture *img;
-						string img_file = ("ux0:data/SimpleVPK/" + subPath);
+						string img_file = ("ux0:data/SimpleVPK/screenshots/" + extractNameFromURL(subPath));
+						curlDownload(subPath.c_str(), img_file.c_str());
 
 						img = vita2d_load_PNG_file(img_file.c_str());
 						if (!img) img = vita2d_load_JPEG_file(img_file.c_str());
