@@ -87,6 +87,7 @@ int main() {
 	Details detailsView;
 
 	SceCtrlData pad;
+	sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG);
 
 	while(1) {
 		sceCtrlPeekBufferPositive(0, &pad, 1);
@@ -103,6 +104,8 @@ int main() {
 		if (sharedData.scene == 0) listView.draw(sharedData, pad.buttons);
 		if (sharedData.scene == 1) detailsView.draw(sharedData, pad.buttons);
 		if (sharedData.scene == 2) installerView.draw(sharedData);
+
+		sharedData.leftStickY = pad.ly;
 
 		vita2d_end_drawing();
 		vita2d_common_dialog_update();
